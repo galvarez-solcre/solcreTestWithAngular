@@ -1,0 +1,36 @@
+<h2>Modificar propiedad: </h2>
+<p>Ingresa el ID de la propiedad a modificar</p>
+<input 
+type="number" 
+class="form-control"
+[(ngModel)]="idRequested">
+<br>
+<button
+class="btn btn-primary"
+(click)="lookByID()"
+>Aceptar</button>
+<br>
+<br>
+<!--<div [style.display] = "showResult ? 'block':'none'">-->
+<div *ngIf="showResult">
+
+    <input
+    type="text"
+    class="form-control"
+    [(ngModel)]="titleToModify"
+    >
+    <input
+    type="text"
+    class="form-control"
+    [(ngModel)]="descriptionToModify"
+    >
+    <input
+    type="text"
+    class="form-control"
+    [(ngModel)]="addressToModify"
+    ><input
+    type="number"
+    class="form-control"
+    [(ngModel)]="priceToModify"
+    >
+</div>
