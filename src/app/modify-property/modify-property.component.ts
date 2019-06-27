@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PropiedadesService } from '../PropiedadesService';
 import { PropiedadesManage } from '../propiedades-manage.model';
+import { PropiedadesListComponent } from '../propiedades-list/propiedades-list.component';
 
 @Component({
   selector: 'app-modify-property',
@@ -9,34 +10,40 @@ import { PropiedadesManage } from '../propiedades-manage.model';
 })
 export class ModifyPropertyComponent implements OnInit {
 
-  idRequested=0;
-  showResult = false;
+  idRequested:number=0;
+  showResult:boolean = false;
 
-  titleToModify ="";
-  descriptionToModify = "";
-  addressToModify = "";
-  priceToModify = 0;
+  titleToModify:string ="";
+  descriptionToModify:string = "";
+  addressToModify:string = "";
+  priceToModify:number = 0;
+
+  private propertySelected:PropiedadesManage;
 
   constructor(private _PropiedadesService: PropiedadesService) { }
 
   ngOnInit() {
+    this._PropiedadesService.onPropertySelected.subscribe((property: PropiedadesManage) => {
+      this.onModifyData(property);
+    });
   }
 
-  lookByID(){
-    if(this.idRequested != 0){
-      let propiedades: PropiedadesManage[];
-      propiedades = this._PropiedadesService.getArrayProperties();
-      propiedades.map((p:PropiedadesManage) => {
-        if(this.idRequested == p.id){
-          this.showResult = true;
-          this.titleToModify = p.titulo;
-          this.descriptionToModify = p.descripcion;
-          this.addressToModify = p.direccion;
-          this.priceToModify = p.precio;
-        }
-      });
-    }else{
-      console.log("No existe propiedad con ese ID");
-    }
+
+  onModifyData(propertyToModify : PropiedadesManage):void{
+ 
+        this.propertySelected = propertyToModify;
+        this.showResult = true;
+        this.titleToModify = propertyToModify.titulo;
+        this.descriptionToModify = propertyToModify.descripcion;
+        this.addressToModify = propertyToModify.direccion;
+        this.priceToModify = propertyToModify.precio;
+  }
+  
+  saveData():void{
+    this.propertySelected.titulo = this.titleToModify;
+    this.propertySelected.descripcion = this.descriptionToModify;
+    this.propertySelected.direccion = this.addressToModify;
+    this.propertySelected.precio = this.priceToModify;
+    this.showResult = false;
   }
 }

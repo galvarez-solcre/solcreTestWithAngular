@@ -4,14 +4,18 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/';
 import { PropiedadesManage } from './propiedades-manage.model';
 import { map } from 'rxjs/operators';
+import { ModifyPropertyComponent } from './modify-property/modify-property.component';
 import { PropiedadesListComponent } from './propiedades-list/propiedades-list.component';
+
 
 @Injectable()
 export class PropiedadesService {
     
     //private _url: string = "/assets/data/propiedades.json"
     private _Propiedades: PropiedadesManage[];
-    @Output() arrayChanged = new EventEmitter();
+    public onArrayChanged:EventEmitter<PropiedadesManage[]> = new EventEmitter();
+    public onPropertySelected:EventEmitter<PropiedadesManage> = new EventEmitter();
+    
     constructor(private http: HttpClient) {
     }
     
@@ -40,16 +44,19 @@ export class PropiedadesService {
         );
     }
 
-    getArrayProperties(){
+    getArrayProperties(): PropiedadesManage[]{
         return this._Propiedades;
     }
-    addNewProperty(newProperty: PropiedadesManage){
+    addNewProperty(newProperty: PropiedadesManage):void{
             //console.log(this._PropiedadesList);
             newProperty.id = this._Propiedades.length + 1;
             this._Propiedades.push(newProperty);
 
-            this.arrayChanged.emit(this._Propiedades);
+            this.onArrayChanged.emit(this._Propiedades);
             //this.onPropiedadesChange.emit();
             console.log("Propiedad agregada! La cantidad de propiedades es de: " + (this._Propiedades.length));
+            
     }
+
+    
 }

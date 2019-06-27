@@ -1,14 +1,16 @@
-import { Component, OnInit, Injector, Injectable } from '@angular/core';
+import { Component, OnInit, Injector, Injectable, EventEmitter, Output } from '@angular/core';
 import { PropiedadesService } from '../PropiedadesService';
 import { PropiedadesManage } from '../propiedades-manage.model';
 
 @Component({
   selector: 'app-propiedades-list',
   templateUrl: './propiedades-list.component.html',
-  styleUrls: []
+  styleUrls: ['./propiedades-list.component.css']
 })
 @Injectable()
 export class PropiedadesListComponent implements OnInit {
+  //@Output() public propertySelected = new EventEmitter<PropiedadesManage>();
+
     static addPropiedades() {
         throw new Error("Method not implemented.");
     }
@@ -25,12 +27,14 @@ export class PropiedadesListComponent implements OnInit {
       this.propiedades = data
     });
     
-    this._PropiedadesService.arrayChanged.subscribe((data: PropiedadesManage[]) => {
+    this._PropiedadesService.onArrayChanged.subscribe((data: PropiedadesManage[]) => {
       this.propiedades = data
     });
     //this._PropiedadesService.onPropieddadesChange.subscribe()
   }
 
-
+  onSelect(selected : PropiedadesManage){
+    this._PropiedadesService.onPropertySelected.emit(selected);
+  }
   
 }

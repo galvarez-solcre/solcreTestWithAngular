@@ -11,11 +11,11 @@ import { PropiedadesService } from '../PropiedadesService';
 @Injectable()
 export class AddPropertyComponent implements OnInit {
 
-  id = 0;
-  title = "";
-  desc = "";
-  address = "";
-  price = 0;
+  id:number = 0;
+  title:string = "";
+  desc:string = "";
+  address:string = "";
+  price:number = 0;
   constructor(private _PropiedadesService: PropiedadesService) { }
 
   ngOnInit() {
