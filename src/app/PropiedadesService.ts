@@ -15,8 +15,11 @@ export class PropiedadesService {
     private _Propiedades: PropiedadesManage[];
     public onArrayChanged:EventEmitter<PropiedadesManage[]> = new EventEmitter();
     public onPropertySelected:EventEmitter<PropiedadesManage> = new EventEmitter();
-    
+    public onPropertySelectedToDelete:EventEmitter<PropiedadesManage> = new EventEmitter();
     constructor(private http: HttpClient) {
+        this.onPropertySelectedToDelete.subscribe((property: PropiedadesManage) => {
+            this.removeProperty(property);
+        });
     }
     
     //getPropiedades(): Observable<IPropiedades[]> {
@@ -58,5 +61,17 @@ export class PropiedadesService {
             
     }
 
+    removeProperty(propertyToRemove: PropiedadesManage){
+        console.log("Se quiere eliminar la propiedad: " + propertyToRemove.titulo);
+        console.log("Se deberia eliminar el slice: " + this._Propiedades.findIndex(p => p.id == propertyToRemove.id));
+        this._Propiedades.splice(this._Propiedades.findIndex(p => p.id == propertyToRemove.id),this._Propiedades.findIndex(p => p.id == propertyToRemove.id) + 1);
+        this.onArrayChanged.emit(this._Propiedades);
+
+        /*this._Propiedades.forEach((property: any) => {
+            let propiedad = new PropiedadesManage(property.id,property.title,property.description,property.address,property.price);
+            this._Propiedades.push(propiedad);
+            //PropiedadesListComponent.addPropiedades(propiedad);
+        });*/
+    }
     
 }

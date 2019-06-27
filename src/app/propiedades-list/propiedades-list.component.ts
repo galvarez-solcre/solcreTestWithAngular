@@ -30,6 +30,8 @@ export class PropiedadesListComponent implements OnInit {
     this._PropiedadesService.onArrayChanged.subscribe((data: PropiedadesManage[]) => {
       this.propiedades = data
     });
+
+    
     //this._PropiedadesService.onPropieddadesChange.subscribe()
   }
 
@@ -37,4 +39,7 @@ export class PropiedadesListComponent implements OnInit {
     this._PropiedadesService.onPropertySelected.emit(selected);
   }
   
+  onDeleteProperty(selected : PropiedadesManage){
+    this._PropiedadesService.onPropertySelectedToDelete.emit(selected);
+  }
 }

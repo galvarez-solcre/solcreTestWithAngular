@@ -1,4 +1,6 @@
 <h2>Lista de propiedades: </h2>
 <ul class="list-group groupProperties" *ngFor="let props of propiedades">
     <button type="button" class="list-group-item list-group-item-action btnProperty" (click)="onSelect(props)">-{{props.id}} <br> - {{props.titulo}}<br> - {{props.descripcion}} <br> -{{props.direccion}} <br> - {{props.precio}}</button>
+    <br>
+    <button type="button" class="btn btn-danger" (click)="onDeleteProperty(props)">Eliminar</button>
 </ul>
