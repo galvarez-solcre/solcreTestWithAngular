@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { PropiedadesService } from '../PropiedadesService';
 import { PropiedadesManage } from '../propiedades-manage.model';
 import { PropiedadesListComponent } from '../propiedades-list/propiedades-list.component';
+import { HttpClient } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-modify-property',
@@ -13,6 +15,7 @@ export class ModifyPropertyComponent implements OnInit {
   idRequested:number=0;
   showResult:boolean = false;
 
+  idToModify:number = 0;
   titleToModify:string ="";
   descriptionToModify:string = "";
   addressToModify:string = "";
@@ -20,7 +23,7 @@ export class ModifyPropertyComponent implements OnInit {
 
   private propertySelected:PropiedadesManage;
 
-  constructor(private _PropiedadesService: PropiedadesService) { }
+  constructor(private _PropiedadesService: PropiedadesService,private http: HttpClient) { }
 
   ngOnInit() {
     this._PropiedadesService.onPropertySelected.subscribe((property: PropiedadesManage) => {
@@ -33,6 +36,7 @@ export class ModifyPropertyComponent implements OnInit {
  
         this.propertySelected = propertyToModify;
         this.showResult = true;
+        this.idToModify = propertyToModify.id;
         this.titleToModify = propertyToModify.titulo;
         this.descriptionToModify = propertyToModify.descripcion;
         this.addressToModify = propertyToModify.direccion;
@@ -40,10 +44,22 @@ export class ModifyPropertyComponent implements OnInit {
   }
   
   saveData():void{
-    this.propertySelected.titulo = this.titleToModify;
-    this.propertySelected.descripcion = this.descriptionToModify;
-    this.propertySelected.direccion = this.addressToModify;
-    this.propertySelected.precio = this.priceToModify;
-    this.showResult = false;
+    this.http
+          .put(
+            'http://demo4472350.mockable.io/properties/' + this.idToModify,
+            {
+              title: this.titleToModify, 
+              description: this.descriptionToModify, 
+              address: this.addressToModify, 
+              price: this.priceToModify
+            }
+          )
+          .subscribe((property: any) => {
+            property.title = this.titleToModify;
+            property.description= this.descriptionToModify;
+            property.address = this.addressToModify;
+            property.price = this.priceToModify;
+            this.showResult = false;
+          });     
   }
 }

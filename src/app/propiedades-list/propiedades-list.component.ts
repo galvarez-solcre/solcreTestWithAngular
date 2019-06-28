@@ -35,11 +35,11 @@ export class PropiedadesListComponent implements OnInit {
     //this._PropiedadesService.onPropieddadesChange.subscribe()
   }
 
-  onSelect(selected : PropiedadesManage){
+  onSelect(selected : PropiedadesManage):void{
     this._PropiedadesService.onPropertySelected.emit(selected);
   }
   
-  onDeleteProperty(selected : PropiedadesManage){
+  onDeleteProperty(selected : PropiedadesManage):void{
     this._PropiedadesService.onPropertySelectedToDelete.emit(selected);
   }
 }

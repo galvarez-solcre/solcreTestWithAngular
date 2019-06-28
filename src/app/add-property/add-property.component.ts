@@ -23,7 +23,7 @@ export class AddPropertyComponent implements OnInit {
 
 
 
-  addProperty(){
+  addProperty():void{
     if(this.title != "" && this.desc != "" && this.address != ""){
       let propiedad = new PropiedadesManage(this.id,this.title,this.desc,this.address,this.price);
       this._PropiedadesService.addNewProperty(propiedad);

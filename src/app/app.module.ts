@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { AddPropertyComponent } from './add-property/add-property.component';
 import { ModifyPropertyComponent } from './modify-property/modify-property.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,

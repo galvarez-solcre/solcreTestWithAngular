@@ -12,7 +12,6 @@ export class PropiedadesManage{
         public direccion: string,
         public precio: number,
         public foto?: string){
-
     }
 
 }

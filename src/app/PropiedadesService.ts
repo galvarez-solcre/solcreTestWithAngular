@@ -16,6 +16,7 @@ export class PropiedadesService {
     public onArrayChanged:EventEmitter<PropiedadesManage[]> = new EventEmitter();
     public onPropertySelected:EventEmitter<PropiedadesManage> = new EventEmitter();
     public onPropertySelectedToDelete:EventEmitter<PropiedadesManage> = new EventEmitter();
+    
     constructor(private http: HttpClient) {
         this.onPropertySelectedToDelete.subscribe((property: PropiedadesManage) => {
             this.removeProperty(property);
@@ -32,6 +33,7 @@ export class PropiedadesService {
                 //let property = new PropiedadesManage(response.map())
                 response.forEach((property: any) => {
                     let propiedad = new PropiedadesManage(property.id,property.title,property.description,property.address,property.price);
+                    
                     this._Propiedades.push(propiedad);
                     //PropiedadesListComponent.addPropiedades(propiedad);
                 });
@@ -50,28 +52,37 @@ export class PropiedadesService {
     getArrayProperties(): PropiedadesManage[]{
         return this._Propiedades;
     }
+
     addNewProperty(newProperty: PropiedadesManage):void{
-            //console.log(this._PropiedadesList);
-            newProperty.id = this._Propiedades.length + 1;
-            this._Propiedades.push(newProperty);
-
-            this.onArrayChanged.emit(this._Propiedades);
-            //this.onPropiedadesChange.emit();
-            console.log("Propiedad agregada! La cantidad de propiedades es de: " + (this._Propiedades.length));
-            
-    }
-
-    removeProperty(propertyToRemove: PropiedadesManage){
-        console.log("Se quiere eliminar la propiedad: " + propertyToRemove.titulo);
-        console.log("Se deberia eliminar el slice: " + this._Propiedades.findIndex(p => p.id == propertyToRemove.id));
-        this._Propiedades.splice(this._Propiedades.findIndex(p => p.id == propertyToRemove.id),this._Propiedades.findIndex(p => p.id == propertyToRemove.id) + 1);
-        this.onArrayChanged.emit(this._Propiedades);
-
-        /*this._Propiedades.forEach((property: any) => {
+        this.http
+          .post(
+            'http://demo4472350.mockable.io/properties',
+            { 
+                title: newProperty.titulo, 
+                description: newProperty.descripcion, 
+                address: newProperty.direccion, 
+                price: newProperty.precio
+            }
+          )
+          .subscribe((property: any) => {
             let propiedad = new PropiedadesManage(property.id,property.title,property.description,property.address,property.price);
             this._Propiedades.push(propiedad);
-            //PropiedadesListComponent.addPropiedades(propiedad);
-        });*/
+
+            this.onArrayChanged.emit(this._Propiedades);
+          });            
     }
-    
+
+    removeProperty(propertyToRemove: PropiedadesManage):void{
+        this.http
+        .delete(
+          'http://demo4472350.mockable.io/properties/' + propertyToRemove.id
+        )
+        .subscribe((property: any) => {
+            this._Propiedades.splice(this._Propiedades.findIndex(p => p.id == propertyToRemove.id),this._Propiedades.findIndex(p => p.id == propertyToRemove.id) + 1);
+            this.onArrayChanged.emit(this._Propiedades);
+
+          this.onArrayChanged.emit(this._Propiedades);
+        });
+
+    }
 }
