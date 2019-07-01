@@ -1,31 +1,35 @@
-<h2>Ingresar nueva propiedad: </h2>
-    <h3>Titulo:</h3>
-        <input 
-        type="text"
-        class="form-control"
-        [(ngModel)]="title"
-        >
-        <h3>Descripcion:</h3>
-        <input 
-        type="text"
-        class="form-control"
-        [(ngModel)]="desc"
-        >
-        <h3>Direccion:</h3>
-        <input 
-        type="text"
-        class="form-control"
-        [(ngModel)]="address"
-        >
-        <h3>Precio:</h3>
-        <input 
-        type="number"
-        class="form-control"
-        [(ngModel)]="price"
-        >
-        <br>
-        <br>
-        <button
-        class="btn btn-primary"
-        (click)="addProperty()"
-        >Agregar</button>
+<section id="big-container">
+    <h2>Ingresar nueva propiedad: </h2>
+    <div id="small-container">
+        <h3>Titulo:</h3>
+            <input 
+            type="text"
+            class="form-control"
+            [(ngModel)]="title"
+            >
+            <h3>Descripcion:</h3>
+            <input 
+            type="text"
+            class="form-control"
+            [(ngModel)]="desc"
+            >
+            <h3>Direccion:</h3>
+            <input 
+            type="text"
+            class="form-control"
+            [(ngModel)]="address"
+            >
+            <h3>Precio:</h3>
+            <input 
+            type="number"
+            class="form-control"
+            [(ngModel)]="price"
+            >
+            <br>
+            <br>
+            <button
+            class="btn btn-primary"
+            (click)="addProperty()"
+            >Agregar</button>
+    </div>
+</section>

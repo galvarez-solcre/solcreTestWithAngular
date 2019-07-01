@@ -1,41 +1,34 @@
-<h2>Modificar propiedad: </h2>
-<p>Selecciona una propiedad de la lista de arriba</p>
-<!--<input 
-type="number" 
-class="form-control"
-[(ngModel)]="idRequested">
-<br>
-<button
-class="btn btn-primary"
-(click)="lookByID()"
->Aceptar</button>-->
-<br>
-<!--<div [style.display] = "showResult ? 'block':'none'">-->
-<div>
-<div *ngIf="showResult">
-
-    <input
-    type="text"
-    class="form-control"
-    [(ngModel)]="titleToModify"
-    >
-    <input
-    type="text"
-    class="form-control"
-    [(ngModel)]="descriptionToModify"
-    >
-    <input
-    type="text"
-    class="form-control"
-    [(ngModel)]="addressToModify"
-    ><input
-    type="number"
-    class="form-control"
-    [(ngModel)]="priceToModify"
-    >
+<div id="big-container">
+    <h2>Modificar propiedad: </h2>
+    <p>Selecciona una propiedad de la lista de arriba</p>
     <br>
-    <button
-    class="btn btn-primary"
-    (click)="saveData()"
-    >Listo</button>
+    <!--<div [style.display] = "showResult ? 'block':'none'">-->
+    <div id="small-container">
+        <div *ngIf="showResult">
+            <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="titleToModify"
+            >
+            <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="descriptionToModify"
+            >
+            <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="addressToModify"
+            ><input
+            type="number"
+            class="form-control"
+            [(ngModel)]="priceToModify"
+            >
+            <br>
+            <button
+            class="btn btn-primary"
+            (click)="saveData()"
+            >Listo</button>
+        </div>
+    </div>
 </div>

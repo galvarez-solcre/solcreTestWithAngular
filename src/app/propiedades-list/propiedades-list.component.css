@@ -1,8 +1,15 @@
 .btnProperty{
     width: 50%;
-    
+}
+h2{
+    margin-top: 0%;
 }
 
-.groupProperties{
-    padding-left: 3%;
+#small-container, #big-container{
+    padding-left: 5%;
+}
+
+#big-container{
+    background-color: greenyellow;
+    padding: 3% 0 3% 30%;
 }

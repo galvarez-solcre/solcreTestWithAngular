@@ -1,0 +1,17 @@
+
+h2{
+    margin-top: 0%;
+}
+
+#small-container, #big-container{
+    padding-left: 5%;
+}
+
+input{
+    width: 50%;
+}
+#big-container{
+    background-color: orange;
+    padding: 15% 0 3% 30%;
+    height: 100vh; 
+}
