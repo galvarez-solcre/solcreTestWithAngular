@@ -64,7 +64,8 @@ export class PropiedadesService {
                 price: newProperty.precio
             }
           )
-          .subscribe((property: any) => {
+          .subscribe((property : any) => {
+            console.log(property.title);
             let propiedad = new PropiedadesManage(property.id,property.title,property.description,property.address,property.price);
             this._Propiedades.push(propiedad);
 

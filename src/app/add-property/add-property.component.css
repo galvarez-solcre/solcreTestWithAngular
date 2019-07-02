@@ -14,3 +14,7 @@ h2{
     padding: 5% 0 3% 30%;
     height: 100vh; 
 }
+
+input.ng-invalid.ng-touched{
+    border: 1px solid red;
+}

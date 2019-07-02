@@ -5,30 +5,31 @@
     <!--<div [style.display] = "showResult ? 'block':'none'">-->
     <div id="small-container">
         <div *ngIf="showResult">
-            <input
-            type="text"
-            class="form-control"
-            [(ngModel)]="titleToModify"
-            >
-            <input
-            type="text"
-            class="form-control"
-            [(ngModel)]="descriptionToModify"
-            >
-            <input
-            type="text"
-            class="form-control"
-            [(ngModel)]="addressToModify"
-            ><input
-            type="number"
-            class="form-control"
-            [(ngModel)]="priceToModify"
-            >
-            <br>
-            <button
-            class="btn btn-primary"
-            (click)="saveData()"
-            >Listo</button>
+            <form [formGroup]="formValues" (ngSubmit)="onSaveData()">
+                <input
+                type="text"
+                class="form-control"
+                formControlName ="title"
+                >
+                <input
+                type="text"
+                class="form-control"
+                formControlName="desc"
+                >
+                <input
+                type="text"
+                class="form-control"
+                formControlName="address"
+                ><input
+                type="number"
+                class="form-control"
+                formControlName="price"
+                >
+                <br>
+                <button
+                class="btn btn-primary"
+                >Listo</button>
+            </form>
         </div>
     </div>
 </div>

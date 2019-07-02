@@ -3,6 +3,7 @@ import { PropiedadesService } from '../PropiedadesService';
 import { PropiedadesManage } from '../propiedades-manage.model';
 import { PropiedadesListComponent } from '../propiedades-list/propiedades-list.component';
 import { HttpClient } from '@angular/common/http';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 
 @Component({
@@ -11,6 +12,8 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./modify-property.component.css']
 })
 export class ModifyPropertyComponent implements OnInit {
+
+  formValues: FormGroup;
 
   idRequested:number=0;
   showResult:boolean = false;
@@ -33,7 +36,6 @@ export class ModifyPropertyComponent implements OnInit {
 
 
   onModifyData(propertyToModify : PropiedadesManage):void{
- 
         this.propertySelected = propertyToModify;
         this.showResult = true;
         this.idToModify = propertyToModify.id;
@@ -41,9 +43,17 @@ export class ModifyPropertyComponent implements OnInit {
         this.descriptionToModify = propertyToModify.descripcion;
         this.addressToModify = propertyToModify.direccion;
         this.priceToModify = propertyToModify.precio;
+        
+        this.formValues = new FormGroup({
+          'title': new FormControl(propertyToModify.titulo, Validators.required),
+          'desc': new FormControl(propertyToModify.descripcion, Validators.required),
+          'address': new FormControl(propertyToModify.direccion, Validators.required),
+          'price': new FormControl(propertyToModify.precio, Validators.required)
+        });
+
   }
   
-  saveData():void{
+  onSaveData():void{
     this.http
           .put(
             'http://demo4472350.mockable.io/properties/' + this.idToModify,

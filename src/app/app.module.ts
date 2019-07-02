@@ -4,7 +4,7 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { PropiedadesListComponent } from './propiedades-list/propiedades-list.component'
 import { PropiedadesService } from './PropiedadesService'
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AddPropertyComponent } from './add-property/add-property.component';
 import { ModifyPropertyComponent } from './modify-property/modify-property.component';
 
@@ -19,7 +19,7 @@ import { ModifyPropertyComponent } from './modify-property/modify-property.compo
   imports: [
     BrowserModule,
     HttpClientModule,
-    FormsModule
+    ReactiveFormsModule
   ],
   providers: [PropiedadesService],
   bootstrap: [AppComponent]

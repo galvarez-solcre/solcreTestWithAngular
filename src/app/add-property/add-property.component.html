@@ -1,6 +1,51 @@
 <section id="big-container">
     <h2>Ingresar nueva propiedad: </h2>
     <div id="small-container">
+        <form [formGroup]="formValues" (ngSubmit)="onSubmit()">
+            <h3>Titulo:</h3>
+            <input 
+            type="text"
+            formControlName="title"
+            class="form-control"
+            >
+            <!--<p class="help-block" *ngIf="!title.valid">Por favor ingrese un titulo.</p>-->
+            <h3>Descripcion:</h3>
+            <input 
+            type="text"
+            formControlName="desc"
+            class="form-control"
+            >
+            <!--<p class="help-block" *ngIf="!desc.valid">Por favor ingrese una descripcion.</p>-->
+            <h3>Direccion:</h3>
+            <input 
+            type="text"
+            formControlName="address"
+            class="form-control"
+            >
+            <!--<p class="help-block" *ngIf="!direcc.valid">Por favor ingrese una direccion.</p>-->
+            <h3>Precio:</h3>
+            <input 
+            type="number"
+            min="1"
+            formControlName="price"
+            class="form-control"
+            >
+            <!--<p class="help-block" *ngIf="!price.valid">Por favor ingrese un precio.</p>-->
+            <br>
+            <br>
+            <button
+            class="btn btn-primary"
+            >Agregar</button>
+        </form>
+    </div>
+</section>
+
+
+
+
+<!--<section id="big-container">
+    <h2>Ingresar nueva propiedad: </h2>
+    <div id="small-container">
         <h3>Titulo:</h3>
             <input 
             type="text"
@@ -32,4 +77,4 @@
             (click)="addProperty()"
             >Agregar</button>
     </div>
-</section>
+</section>-->
